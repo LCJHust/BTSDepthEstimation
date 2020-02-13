@@ -1,0 +1,11 @@
+idea
+work_dirs
+*.pyc
+.idea
+sample
+checkpoint
+*.png
+*.jgp
+tmp
+debug
+*.txt
