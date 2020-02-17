@@ -18,8 +18,8 @@ class PlaneDepthModule(nn.Module):
         up_w = input_size[1] * upratio
 
         up_vu = torch.meshgrid(torch.arange(up_h), torch.arange(up_w))
-        self.up_v_index = up_vu[0].contiguous().view(-1).cuda()
-        self.up_u_index = up_vu[1].contiguous().view(-1).cuda()
+        self.up_v_index = up_vu[0].contiguous().view(-1)
+        self.up_u_index = up_vu[1].contiguous().view(-1)
 
         c = channel
         plane_conv = []
@@ -81,7 +81,11 @@ class PlaneDepthModule(nn.Module):
             plane_params = plane_equation[i, :, org_v, org_u]
             a, b, c, d = plane_params[0, :], plane_params[1, :], plane_params[2, :], plane_params[3, :]
 
-            numerator = d * torch.sqrt((u*u + v*v + 1.0))
+            tmp = torch.sqrt((u*u + v*v + 1.0))
+            tmp = tmp.to(d.device)
+            numerator = d * tmp
+            u = u.to(a.device)
+            v = v.to(b.device)
             denominator = a*u + b*v + c
             self.estimation_depth[i, 0, self.up_v_index, self.up_u_index] = numerator/denominator
 

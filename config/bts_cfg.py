@@ -49,7 +49,7 @@ model = dict(
     )
 
 
-optimizer = dict(type='Adam', lr=0.01, betas=(0.9, 0.999))
+optimizer = dict(type='Adam', lr=0.0001, betas=(0.9, 0.999))
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 
 lr_config = dict(

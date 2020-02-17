@@ -23,7 +23,7 @@ def parse_args():
         help='whether to evaluate the checkpoint during training')
     parser.add_argument(
         '--gpus',
-        default='0',
+        default='0, 1, 2',
         type=str,
         help='number of gpus to use '
              '(only applicable to non-distributed training)')
