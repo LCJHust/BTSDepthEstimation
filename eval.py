@@ -132,4 +132,3 @@ if __name__ == "__main__":
 
     print(evaluator.eval(img_folder, gt_folder, False))
 
-

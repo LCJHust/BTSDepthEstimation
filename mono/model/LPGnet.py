@@ -27,7 +27,6 @@ class LPGNet(nn.Module):
         self.max_depth = cfg.model['max_depth']
         self.fxy = cfg.model['fxy']
         self.bs = cfg.data['imgs_per_gpu']
-        # self.calib_matrix_inv = torch.FloatTensor(cfg.data['K_inv']).cuda()
 
         self.lpg8 = PlaneDepthModule((input_shape[0]//8, input_shape[1]//8), 64, 8, self.max_depth)
         self.lpg4 = PlaneDepthModule((input_shape[0]//4, input_shape[1]//4), 32, 4, self.max_depth)
@@ -200,8 +199,9 @@ class LPGNet(nn.Module):
         output['ds'] = ds
 
         if self.training:
+            print(self.global_step)
             gt = inputs['left_gt']
-            if self.global_step % 1000 == 0:
+            if self.global_step % 50 == 0:
                 gt_mask = (gt[0] > 0).clone().data.cpu().numpy()
                 vis_ds = ds.clone()[0, 0].data.cpu().numpy()
                 vis_ds_half = depth_2x2_scaled.clone()[0, 0].data.cpu().numpy()

@@ -24,10 +24,7 @@ class BTSInfer():
         model = LPGNet(cfg)
         load_checkpoint(model, cfg['model_path'])
         self.model = model.cuda().eval()
-
         self.cfg = cfg
-
-        return
 
     def __infer_transform(self):
         infer_transforms = transforms.Compose(

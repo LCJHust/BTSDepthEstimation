@@ -23,7 +23,7 @@ def parse_args():
         help='whether to evaluate the checkpoint during training')
     parser.add_argument(
         '--gpus',
-        default='0, 1, 2',
+        default='0',
         type=str,
         help='number of gpus to use '
              '(only applicable to non-distributed training)')
@@ -36,6 +36,7 @@ def parse_args():
     parser.add_argument('--local_rank', type=int, default=0)
 
     parser.add_argument('--out_path',
+                        default='./tmp_log',
                         help='needed by job client')
     parser.add_argument('--in_path',
                         help='needed by job client')

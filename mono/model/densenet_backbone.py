@@ -116,9 +116,5 @@ def densenet161(**kwargs):
     model = DenseNet(num_init_features=96, growth_rate=48, block_config=(6, 12, 36, 24), **kwargs)
     return model
 
-if __name__ == "__main__":
-    import torchvision
-    inputs = torch.randn((3, 3, 352, 1216))
-    net = densenet161()
-    print("..")
+
 

@@ -83,4 +83,4 @@ validate = True
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-work_dir = '/home/caojia/Projects/DepthEstimation/tmp/'
+work_dir = '/home/caojia/Projects/BTSDepthEstimation/tmp/'
